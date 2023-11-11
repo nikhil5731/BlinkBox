@@ -4,7 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function setEmail() {
+export default function SetEmail() {
   const [email, setEmail] = useState<string | null>("Generate New Emails");
   const [loader, setLoader] = useState(false);
   const [login, setLogin] = useState<string | undefined>("");
