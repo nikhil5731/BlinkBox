@@ -2,9 +2,11 @@
 
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Messages({ id }: { id: string }) {
+  const router = useRouter();
   const [login, setLogin] = useState("");
   const [domain, setDomain] = useState("");
   const [message, setMessage] = useState({
@@ -42,14 +44,15 @@ export default function Messages({ id }: { id: string }) {
   }, []);
   return (
     <div className="m-10 bg--100 md:p-10 rounded-xl">
-      <Link href={"/"}>
-        <button
-          type="button"
-          className="py-2.5 px-5 me-2 mb-5 text-lg font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-        >
-          Go Back
-        </button>
-      </Link>
+      <button
+        onClick={() => {
+          router.push("/");
+        }}
+        type="button"
+        className="py-2.5 px-5 me-2 mb-5 text-lg font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+      >
+        Go Back
+      </button>
 
       {/* {message} */}
       <div className="flex flex-col">
@@ -62,7 +65,7 @@ export default function Messages({ id }: { id: string }) {
         className=""
       ></div>
       <div>
-        {message.attachments.map(
+        {message.attachments?.map(
           (file: { filename: string; contentType: string; size: number }) => (
             <div className="max-w-fit p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
