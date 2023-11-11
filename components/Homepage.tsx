@@ -4,16 +4,17 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function SetEmail() {
+export default function Homepage() {
   const [email, setEmail] = useState<string | null>("Generate New Emails");
   const [loader, setLoader] = useState(false);
+  const [loader2, setLoader2] = useState(false);
   const [login, setLogin] = useState<string | undefined>("");
   const [domain, setDomain] = useState<string | undefined>("");
   const [inbox, setInbox] = useState([]);
   const [clipboardMsg, setClipboardMsg] = useState("Copy to clipboad");
 
   const handleRefresh = async () => {
-    setLoader(true);
+    setLoader2(true);
     await axios
       .get(
         `https://www.1secmail.com/api/v1/?action=getMessages&login=${login}&domain=${domain}`
@@ -21,7 +22,7 @@ export default function SetEmail() {
       .then((res) => {
         setInbox(res.data);
       });
-    setLoader(false);
+    setLoader2(false);
   };
 
   const handleGenerateEmail = async () => {
@@ -139,41 +140,45 @@ export default function SetEmail() {
             </h5>
           </div>
           <div className="flow-root overflow-x-hidden">
-            <ul role="list" className="divide-gray-200 dark:divide-gray-700">
-              {inbox.map(
-                (
-                  email: {
-                    id: string;
-                    from: string;
-                    subject: string;
-                    date: string;
-                  },
-                  index
-                ) => (
-                  <Link href={`/${email.id}`}>
-                    <li className="p-1 md:p-5 rounded-2xl sm:pt-4 hover:bg-slate-900 cursor-pointer">
-                      <div className="flex items-center ">
-                        <div className="flex-1 min-w-0">
-                          <p className="md:text-lg font-bold text-gray-900 truncate dark:text-white ">
-                            {email.subject}
-                          </p>
-                          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                            {email.from}
-                          </p>
+            {loader2 ? (
+              <>Refreshing...</>
+            ) : (
+              <ul role="list" className="divide-gray-200 dark:divide-gray-700">
+                {inbox.map(
+                  (
+                    email: {
+                      id: string;
+                      from: string;
+                      subject: string;
+                      date: string;
+                    },
+                    index
+                  ) => (
+                    <Link href={`/${email.id}`}>
+                      <li className="p-1 md:p-5 rounded-2xl sm:pt-4 hover:bg-slate-900 cursor-pointer">
+                        <div className="flex items-center ">
+                          <div className="flex-1 min-w-0">
+                            <p className="md:text-lg font-bold text-gray-900 truncate dark:text-white ">
+                              {email.subject}
+                            </p>
+                            <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                              {email.from}
+                            </p>
+                          </div>
+                          <div className="inline-flex flex-col items-end text-base font-semibold text-gray-900 dark:text-white">
+                            <span>{email.date.split(" ")[0]}</span>
+                            <span className="text-sm text-gray-500">
+                              {email.date.split(" ")[1]}
+                            </span>
+                          </div>
                         </div>
-                        <div className="inline-flex flex-col items-end text-base font-semibold text-gray-900 dark:text-white">
-                          <span>{email.date.split(" ")[0]}</span>
-                          <span className="text-sm text-gray-500">
-                            {email.date.split(" ")[1]}
-                          </span>
-                        </div>
-                      </div>
-                      <div className=" bg-gray-700 h-[1px] mt-3" />
-                    </li>
-                  </Link>
-                )
-              )}
-            </ul>
+                        <div className=" bg-gray-700 h-[1px] mt-3" />
+                      </li>
+                    </Link>
+                  )
+                )}
+              </ul>
+            )}
           </div>
         </div>
       </div>

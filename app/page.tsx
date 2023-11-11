@@ -1,9 +1,9 @@
-import SetEmail from "@/components/SetEmail";
+import Homepage from "@/components/Homepage";
 
 export default function Page() {
   return (
     <div className="">
-      <SetEmail />
+      <Homepage />
     </div>
   );
 }
