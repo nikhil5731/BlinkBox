@@ -102,7 +102,7 @@ export default function setEmail() {
               <span className="sr-only">Loading...</span>
             </div>
           ) : (
-            <div className="py-3 px-10 bg-gray-800 rounded-2xl select-none">
+            <div className="py-3 px-10 border-2 border-gray-600 font-bold rounded-2xl select-none">
               {email}
             </div>
           )}
