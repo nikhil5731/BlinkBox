@@ -1,6 +1,6 @@
 import SetEmail from "@/components/SetEmail";
 
-export default function Home() {
+export default function Page() {
   return (
     <div className="">
       <SetEmail />
