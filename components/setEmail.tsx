@@ -78,7 +78,7 @@ export default function setEmail() {
   }, []);
 
   return (
-    <div className="m-10">
+    <div className="mx-10">
       <div className=" flex flex-col justify-center items-center gap-5">
         <div>
           {loader ? (
@@ -102,7 +102,9 @@ export default function setEmail() {
               <span className="sr-only">Loading...</span>
             </div>
           ) : (
-            <div className="py-3 px-10 bg-gray-800 rounded-2xl select-none">{email}</div>
+            <div className="py-3 px-10 bg-gray-800 rounded-2xl select-none">
+              {email}
+            </div>
           )}
         </div>
         <div className="flex flex-wrap justify-center">
@@ -123,20 +125,20 @@ export default function setEmail() {
           <button
             onClick={handleCopyToClipBoard}
             type="button"
-            className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            className="py-2.5 px-5 w-40 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           >
             {clipboardMsg}
           </button>
         </div>
       </div>
-      <div className="w-full mt-10">
+      <div className="w-full mt-4">
         <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex items-center justify-between my-4 text-2xl">
+          <div className="flex items-center justify-between mb-4 text-2xl">
             <h5 className=" text-3xl font-bold leading-none text-gray-900 dark:text-white underline underline-offset-4">
               Inbox
             </h5>
           </div>
-          <div className="flow-root">
+          <div className="flow-root overflow-x-hidden">
             <ul role="list" className="divide-gray-200 dark:divide-gray-700">
               {inbox.map(
                 (
@@ -166,9 +168,9 @@ export default function setEmail() {
                           </span>
                         </div>
                       </div>
-                      <div className=" bg-gray-700 h-[1px] mt-3"/>
+                      <div className=" bg-gray-700 h-[1px] mt-3" />
                     </li>
-                  </Link> 
+                  </Link>
                 )
               )}
             </ul>

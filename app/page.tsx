@@ -1,4 +1,4 @@
-import SetEmail from "@/components/setEmail";
+import SetEmail from "@/components/SetEmail";
 
 export default function Home() {
   return (

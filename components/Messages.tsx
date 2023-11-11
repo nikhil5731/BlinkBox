@@ -43,7 +43,7 @@ export default function Messages({ id }: { id: string }) {
     getMessage(email[0], email[1]);
   }, []);
   return (
-    <div className="m-10 bg--100 md:p-10 rounded-xl">
+    <div className="m-10 mt-0 md:pt-0 md:p-10 rounded-xl">
       <button
         onClick={() => {
           router.push("/");
@@ -57,8 +57,8 @@ export default function Messages({ id }: { id: string }) {
       {/* {message} */}
       <div className="flex flex-col">
         <span className="font-bold text-2xl">{message.subject}</span>
-        <span className=" italic">Sent By: {message.from}</span>
-        <span className=" italic">On: {message.date}</span>
+        <span className="italic">Sent By: {message.from}</span>
+        <span className="italic">On: {message.date}</span>
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: message.body }}
